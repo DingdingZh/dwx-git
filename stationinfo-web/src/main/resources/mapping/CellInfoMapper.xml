@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsc.stationinfoweb.dao.CellInfoDao">
+  <resultMap id="BaseResultMap" type="com.jsc.stationinfoweb.datamodel.CellInfo">
+    <id column="mnc" jdbcType="INTEGER" property="mnc" />
+    <id column="lac" jdbcType="INTEGER" property="lac" />
+    <id column="ci" jdbcType="INTEGER" property="ci" />
+    <result column="mcc" jdbcType="INTEGER" property="mcc" />
+    <result column="lat" jdbcType="REAL" property="lat" />
+    <result column="lon" jdbcType="REAL" property="lon" />
+    <result column="acc" jdbcType="INTEGER" property="acc" />
+    <result column="date" jdbcType="INTEGER" property="date" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="township" jdbcType="VARCHAR" property="township" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mnc, lac, ci, mcc, lat, lon, acc, date, addr, province, city, district, township
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.jsc.stationinfoweb.datamodel.CellInfoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cellinfo
+    where mnc = #{mnc,jdbcType=INTEGER}
+      and lac = #{lac,jdbcType=INTEGER}
+      and ci = #{ci,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jsc.stationinfoweb.datamodel.CellInfoKey">
+    delete from cellinfo
+    where mnc = #{mnc,jdbcType=INTEGER}
+      and lac = #{lac,jdbcType=INTEGER}
+      and ci = #{ci,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jsc.stationinfoweb.datamodel.CellInfo">
+    insert into cellinfo (mnc, lac, ci, 
+      mcc, lat, lon, acc, 
+      date, addr, province, 
+      city, district, township
+      )
+    values (#{mnc,jdbcType=INTEGER}, #{lac,jdbcType=INTEGER}, #{ci,jdbcType=INTEGER}, 
+      #{mcc,jdbcType=INTEGER}, #{lat,jdbcType=REAL}, #{lon,jdbcType=REAL}, #{acc,jdbcType=INTEGER}, 
+      #{date,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{township,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jsc.stationinfoweb.datamodel.CellInfo">
+    insert into cellinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mnc != null">
+        mnc,
+      </if>
+      <if test="lac != null">
+        lac,
+      </if>
+      <if test="ci != null">
+        ci,
+      </if>
+      <if test="mcc != null">
+        mcc,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lon != null">
+        lon,
+      </if>
+      <if test="acc != null">
+        acc,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="township != null">
+        township,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mnc != null">
+        #{mnc,jdbcType=INTEGER},
+      </if>
+      <if test="lac != null">
+        #{lac,jdbcType=INTEGER},
+      </if>
+      <if test="ci != null">
+        #{ci,jdbcType=INTEGER},
+      </if>
+      <if test="mcc != null">
+        #{mcc,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=REAL},
+      </if>
+      <if test="lon != null">
+        #{lon,jdbcType=REAL},
+      </if>
+      <if test="acc != null">
+        #{acc,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=INTEGER},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="township != null">
+        #{township,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsc.stationinfoweb.datamodel.CellInfo">
+    update cellinfo
+    <set>
+      <if test="mcc != null">
+        mcc = #{mcc,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=REAL},
+      </if>
+      <if test="lon != null">
+        lon = #{lon,jdbcType=REAL},
+      </if>
+      <if test="acc != null">
+        acc = #{acc,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=INTEGER},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="township != null">
+        township = #{township,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mnc = #{mnc,jdbcType=INTEGER}
+      and lac = #{lac,jdbcType=INTEGER}
+      and ci = #{ci,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jsc.stationinfoweb.datamodel.CellInfo">
+    update cellinfo
+    set mcc = #{mcc,jdbcType=INTEGER},
+      lat = #{lat,jdbcType=REAL},
+      lon = #{lon,jdbcType=REAL},
+      acc = #{acc,jdbcType=INTEGER},
+      date = #{date,jdbcType=INTEGER},
+      addr = #{addr,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      township = #{township,jdbcType=VARCHAR}
+    where mnc = #{mnc,jdbcType=INTEGER}
+      and lac = #{lac,jdbcType=INTEGER}
+      and ci = #{ci,jdbcType=INTEGER}
+  </update>
+</mapper>
