@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@RequestMapping("/api/v1/stationinfo")
+@RequestMapping("/stationinfo")
 @Api(value = "station info",description = "基站信息查询")
 public class StationInfoController {
 
     @Autowired
     private CellInfoMngmService cellInfoMngmService;
 
-    @RequestMapping(value = "/cellinfo/{userkey}",method = {RequestMethod.GET})
+    @RequestMapping(value = "/{userkey}",method = {RequestMethod.GET})
     @ApiOperation(value = "根据mnc,lac,cell查询基站信息，移动联动基站mnc字段值为0，电信基站mnc字段值为sid")
     public CellInfo queryCellInfoByPrimaryKey(@PathVariable String userkey, CellInfoKey key){
         if(userkey == null || userkey.isEmpty())
@@ -28,19 +28,20 @@ public class StationInfoController {
         return cellInfoMngmService.getCellInfoByPrimaryKey(key);
     }
 
-    @RequestMapping(value = "/cellinfo/{userkey}/{mnc}/{lac}/{ci}",method = {RequestMethod.GET})
-    @ApiOperation(value = "根据mnc,lac,cell查询基站信息，移动联动基站mnc字段值为0，电信基站mnc字段值为sid")
+    @RequestMapping(value = "/{userkey}/{mcc}/{lac}/{ci}",method = {RequestMethod.GET})
+    @ApiOperation(value = "根据mcc,lac,cell查询基站信息，移动联动基站mnc字段值为0，电信基站mnc字段值为sid")
     public CellInfo queryCellInfoByPrimaryKey2(@PathVariable String userkey,
-                                               @PathVariable int mnc,
+                                               @PathVariable int mcc,
                                                @PathVariable int lac,
                                                @PathVariable int ci){
         if(userkey == null || userkey.isEmpty() || !userkey.equals("ee1ff139-7cd1-11e8-84d9-dc0ea1d02564"))
             return null;
         CellInfoKey cellInfoKey = new CellInfoKey();
-        cellInfoKey.setMnc(mnc);
+        cellInfoKey.setMcc(mcc);
         cellInfoKey.setLac(lac);
         cellInfoKey.setCi(ci);
-        return cellInfoMngmService.getCellInfoByPrimaryKey(cellInfoKey);
+        CellInfo info = cellInfoMngmService.getCellInfoByPrimaryKey(cellInfoKey);
+        return info;
     }
 
 }

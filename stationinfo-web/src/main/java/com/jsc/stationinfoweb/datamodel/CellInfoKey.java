@@ -1,18 +1,18 @@
 package com.jsc.stationinfoweb.datamodel;
 
 public class CellInfoKey {
-    private Integer mnc;
+    private Integer mcc;
 
     private Integer lac;
 
     private Integer ci;
 
-    public Integer getMnc() {
-        return mnc;
+    public Integer getMcc() {
+        return mcc;
     }
 
-    public void setMnc(Integer mnc) {
-        this.mnc = mnc;
+    public void setMcc(Integer mcc) {
+        this.mcc = mcc;
     }
 
     public Integer getLac() {

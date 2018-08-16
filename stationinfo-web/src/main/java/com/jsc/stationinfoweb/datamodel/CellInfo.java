@@ -1,7 +1,7 @@
 package com.jsc.stationinfoweb.datamodel;
 
 public class CellInfo extends CellInfoKey {
-    private Integer mcc;
+    private  Integer mnc;
 
     private Float lat;
 
@@ -21,12 +21,12 @@ public class CellInfo extends CellInfoKey {
 
     private String township;
 
-    public Integer getMcc() {
-        return mcc;
+    public Integer getMnc() {
+        return mnc;
     }
 
-    public void setMcc(Integer mcc) {
-        this.mcc = mcc;
+    public void setMnc(Integer mnc) {
+        this.mnc = mnc;
     }
 
     public Float getLat() {

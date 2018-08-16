@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jsc.stationinfoweb.dao.CellInfoDao">
   <resultMap id="BaseResultMap" type="com.jsc.stationinfoweb.datamodel.CellInfo">
-    <id column="mnc" jdbcType="INTEGER" property="mnc" />
+    <id column="mcc" jdbcType="INTEGER" property="mcc" />
     <id column="lac" jdbcType="INTEGER" property="lac" />
     <id column="ci" jdbcType="INTEGER" property="ci" />
-    <result column="mcc" jdbcType="INTEGER" property="mcc" />
+    <result column="mnc" jdbcType="INTEGER" property="mnc" />
     <result column="lat" jdbcType="REAL" property="lat" />
     <result column="lon" jdbcType="REAL" property="lon" />
     <result column="acc" jdbcType="INTEGER" property="acc" />
@@ -23,13 +23,13 @@
     select 
     <include refid="Base_Column_List" />
     from cellinfo
-    where mnc = #{mnc,jdbcType=INTEGER}
+    where mcc = #{mcc,jdbcType=INTEGER}
       and lac = #{lac,jdbcType=INTEGER}
       and ci = #{ci,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.jsc.stationinfoweb.datamodel.CellInfoKey">
     delete from cellinfo
-    where mnc = #{mnc,jdbcType=INTEGER}
+    where mcc = #{mcc,jdbcType=INTEGER}
       and lac = #{lac,jdbcType=INTEGER}
       and ci = #{ci,jdbcType=INTEGER}
   </delete>
